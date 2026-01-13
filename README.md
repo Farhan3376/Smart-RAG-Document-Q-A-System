@@ -2,9 +2,6 @@
 
 A professional-grade Retrieval-Augmented Generation (RAG) system for intelligent document question-answering, built for university coursework.
 
-**Course:** CSE-848 - Generative AI and Applications  
-**Department:** Robotics and Artificial Intelligence  
-**University:** NUST (SMME)
 
 ---
 
@@ -26,53 +23,9 @@ This Smart RAG system enables users to ask questions about PDF documents and rec
 
 ## 🏗️ System Architecture
 
-```mermaid
-flowchart TB
-    subgraph INPUT["📄 Document Ingestion"]
-        A[2 PDF Documents] --> B[Text Extraction]
-        B --> C[Chunking]
-        C --> D[Embeddings]
-    end
-    
-    subgraph STORAGE["💾 Vector Storage"]
-        E[(FAISS Vector DB)]
-        E --> |"Key (K)"| K[Document Embeddings]
-        E --> |"Value (V)"| V[Text Chunks]
-    end
-    
-    subgraph QUERY["🔍 Query Pipeline"]
-        F[User Query] --> G[Query Embedding]
-        G --> |"Query (Q)"| Q[Query Vector]
-    end
-    
-    subgraph ATTENTION["⚡ QKV Attention"]
-        Q --> ATT[Similarity: Q × K]
-        K --> ATT
-        ATT --> |Top-K Match| V
-        V --> CTX[Retrieved Context]
-    end
-    
-    subgraph LLM["🤖 Generation"]
-        CTX --> J[Groq LLM API]
-        J --> RES[Response]
-    end
-    
-    subgraph UI["🖥️ Interface"]
-        L[Streamlit UI] --> M[Answer + Sources]
-    end
-    
-    D --> E
-    RES --> L
+![System Architecture](Picture1.jpg)
 
-    style INPUT fill:#e8f5e9,stroke:#4caf50
-    style STORAGE fill:#e3f2fd,stroke:#2196f3
-    style QUERY fill:#fff3e0,stroke:#ff9800
-    style ATTENTION fill:#fff9c4,stroke:#fbc02d
-    style LLM fill:#f3e5f5,stroke:#9c27b0
-    style UI fill:#fce4ec,stroke:#e91e63
-```
-
----
+The diagram above illustrates the complete RAG system architecture, showing the flow from document ingestion through vector storage, QKV attention mechanism, and generation to the final user interface.
 
 ## 📁 Project Structure
 
@@ -111,7 +64,7 @@ project/
 ### Step 1: Clone or Download the Project
 
 ```bash
-cd "C:\Users\MOON COMPUTERS\OneDrive - National University of Sciences & Technology\masters\Generative AI\project"
+git clone https://github.com/Farhan3376/Smart-RAG-Document-Q-A-System.git
 ```
 
 ### Step 2: Install Dependencies
