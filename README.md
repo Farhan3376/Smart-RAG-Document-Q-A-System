@@ -256,21 +256,6 @@ Expected output:
 
 ---
 
-## 📝 License
-
-This project is created for educational purposes as part of CSE-848 coursework at NUST (SMME).
-
----
-
-## 👨‍💻 Author
-
-**Smart RAG System**  
-Course: CSE-848 - Generative AI and Applications  
-Department: Robotics and Artificial Intelligence  
-University: NUST (SMME)
-
----
-
 ## 🙏 Acknowledgments
 
 - **LangChain**: For RAG pipeline components
@@ -278,6 +263,3 @@ University: NUST (SMME)
 - **FAISS**: For efficient vector similarity search
 - **Streamlit**: For rapid UI development
 
----
-
-**Built with ❤️ for CSE-848 | NUST (SMME)**
