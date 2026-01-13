@@ -1,0 +1,24 @@
+
+# Core Framework
+streamlit==1.29.0
+
+# LangChain and LLM
+langchain==0.1.0
+langchain-openai==0.0.2
+openai==1.6.1
+
+# Vector Database
+faiss-cpu==1.7.4
+
+# PDF Processing
+pypdf2==3.0.1
+
+# Utilities
+python-dotenv==1.0.0
+tiktoken==0.5.2
+
+# Optional: For better PDF extraction
+# pdfplumber==0.10.3
+
+# Optional: For setup script (sample PDF generation)
+reportlab==4.0.7
