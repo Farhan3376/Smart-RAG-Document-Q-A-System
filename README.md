@@ -33,10 +33,14 @@ The diagram above illustrates the complete RAG system architecture, showing the 
 project/
 │
 ├── app.py                    # Streamlit web application
-├── config.py                 # Configuration management
+├── config/
+│   └── config.py             # Configuration management
 ├── document_processor.py     # PDF extraction and chunking
 ├── vector_store.py          # FAISS vector database
 ├── rag_pipeline.py          # RAG question-answering logic
+├── groq_models.py           # Groq LLM integration
+├── local_embeddings.py      # Embedding generation logic
+├── process_documents.py     # Script to process PDF files
 │
 ├── requirements.txt         # Python dependencies
 ├── .env                     # Environment variable template
@@ -58,7 +62,7 @@ project/
 ### Prerequisites
 
 - Python 3.8 or higher
-- OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
+- Groq API key ([Get one here](https://console.groq.com/keys))
 - Two PDF documents for question-answering
 
 ### Step 1: Clone or Download the Project
@@ -80,15 +84,15 @@ pip install -r requirements.txt
    copy .env.template .env
    ```
 
-2. Edit `.env` and add your OpenAI API key:
+2. Edit `.env` and add your Groq API key:
    ```
-   OPENAI_API_KEY=your_actual_api_key_here
+   GROQ_API_KEY=your_actual_api_key_here
    ```
 
 ### Step 4: Add PDF Documents
 
 1. Place your two PDF documents in the `data/` directory
-2. Edit `config.py` and update the PDF filenames:
+2. Edit `config/config.py` and update the PDF filenames:
    ```python
    PDF_DOCUMENTS = [
        DATA_DIR / "FAST3R.pdf",
@@ -143,7 +147,7 @@ This ensures the system never uses external knowledge or makes up information.
 
 ## ⚙️ Configuration
 
-All system settings can be customized in `config.py`:
+All system settings can be customized in `config/config.py`:
 
 ### LLM Settings
 - `LLM_MODEL`: Groq Cloud model to use 
@@ -166,14 +170,14 @@ All system settings can be customized in `config.py`:
 1. **PDF Extraction**: Uses PyPDF2 to extract text page-by-page
 2. **Text Cleaning**: Removes extra whitespace and normalizes formatting
 3. **Semantic Chunking**: Uses LangChain's RecursiveCharacterTextSplitter with semantic separators
-4. **Embedding Generation**: Creates 1536-dimensional vectors using OpenAI's `text-embedding-ada-002`
+4. **Embedding Generation**: Creates high-dimensional vectors using Nomic or OpenAI-compatible models
 
 ### RAG Pipeline
 
 1. **Query Processing**: User question is embedded using the same model
 2. **Similarity Search**: FAISS finds the top-K most similar chunks using L2 distance
 3. **Context Assembly**: Retrieved chunks are formatted with source metadata
-4. **Answer Generation**: GPT model generates answer with strict grounding instructions
+4. **Answer Generation**: Groq model generates answer with strict grounding instructions
 5. **Source Extraction**: System tracks and displays all sources used
 
 ### Anti-Hallucination Mechanisms
@@ -222,8 +226,6 @@ Expected output:
 
 ---
 
-
-
 ## 🎓 Academic Context
 
 ### Project Deliverables
@@ -244,7 +246,7 @@ Expected output:
 
 ### "PDF documents not found"
 - Check that PDFs are in the `data/` directory
-- Verify filenames in `config.py` match actual files
+- Verify filenames in `config/config.py` match actual files
 
 ### "No text extracted from PDF"
 - Ensure PDFs contain extractable text (not scanned images)
@@ -258,10 +260,8 @@ Expected output:
 
 ## 🙏 Acknowledgments
 
+- **Groq**: For fast inference and OpenAI-compatible API
 - **LangChain**: For RAG pipeline components
-- **OpenAI**: For embeddings and language models
+- **OpenAI**: For embeddings and language models (optional)
 - **FAISS**: For efficient vector similarity search
 - **Streamlit**: For rapid UI development
-# Smart-RAG-Document-Q-A-System
-#   S m a r t - R A G - D o c u m e n t - Q - A - S y s t e m  
- 
